@@ -48,7 +48,6 @@ public class TutorialManager : Updater
     private void SubscriptionTutorial()
     {
         _tutorialIndex++;
-        Debug.Log("チュートリアル" +  _tutorialIndex + "終了");
 
         //全てのチュートリアルが終了した際、購読解除し早期リターン
         if(_tutorialIndex >= _baseTutorials.Length)

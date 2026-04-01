@@ -109,6 +109,7 @@ public class EnemyState : MonoBehaviour
                 {
                     _enemyCollider.enabled = false;
                     EnemyDeathEvent?.Invoke();
+                    EnemyDeathEvent = null;
                     _nowState = EnemyStatus.Death;
                 }
 

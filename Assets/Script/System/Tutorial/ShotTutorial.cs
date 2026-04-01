@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecondTutorial : BaseTutorial
+public class ShotTutorial : BaseTutorial
 {
     [Header("【敵取得】")]
     [SerializeField] private List<GameObject> _enemyList = new List<GameObject>();
@@ -42,17 +42,15 @@ public class SecondTutorial : BaseTutorial
         
     }
 
+    /// <summary>
+    /// チュートリアルの敵死亡時呼び出されるメソッド
+    /// </summary>
     private void TutorialEnemyDeath()
     {
         _enemyCount--;
 
         if(_enemyCount <= 0)
         {
-            foreach(GameObject enemy in _enemyList)
-            {
-                enemy.GetComponentInChildren<EnemyState>().EnemyDeathEvent -= TutorialEnemyDeath;
-            }
-
             _tutorialCanvas.DOFade(0, _fadeDuration);
             OnEndTutorial.Invoke();
         }

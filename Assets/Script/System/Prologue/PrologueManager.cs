@@ -16,7 +16,7 @@ public class PrologueManager : MonoBehaviour
 
     private bool _canSkip = false;
     private const string SKIP_INPUT_NAME = "Interact";
-    private const string MAINGAMESCENE_NAME = "MainScene";
+    private const string MAINGAMESCENE_NAME = "TutorialScene";
     private const string SKIPANIM_TRIGGER_NAME = "Skip";
 
     private void Update()

@@ -26,7 +26,7 @@ public class MeleeAttackTutorial : BaseTutorial
 
     public override void StartTutorial()
     {
-        _tutorialCanvas.DOFade(1, _fadeDuration);
+        _tutorialCanvas.DOFade(1, _fadeDuration).SetLink(gameObject);
         _showTalkTextUI.ShowTalkText(_text);
 
         foreach (GameObject enemy in _enemyList)
@@ -51,7 +51,7 @@ public class MeleeAttackTutorial : BaseTutorial
 
         if (_enemyCount <= 0)
         {
-            _tutorialCanvas.DOFade(0, _fadeDuration);
+            _tutorialCanvas.DOFade(0, _fadeDuration).SetLink(gameObject);
             OnEndTutorial.Invoke();
         }
     }

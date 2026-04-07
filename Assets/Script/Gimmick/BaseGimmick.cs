@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 /// <summary>
 /// ギミックの素体
@@ -6,6 +7,7 @@
 public abstract class BaseGimmick : MonoBehaviour
 {
     public abstract bool IsInteract { get; }
+    public abstract event Action<string> OnEncountText;
 
     /// <summary>
     /// 見つけた時に実行するメソッド

@@ -30,7 +30,7 @@ public class MoveTutorial : BaseTutorial
 
     public override void StartTutorial()
     {
-        _tutorialCanvas.DOFade(1.0f, _fadeDuration);
+        _tutorialCanvas.DOFade(1.0f, _fadeDuration).SetLink(gameObject);
         _showTalkTextUI.ShowTalkText(_text);
     }
 
@@ -40,7 +40,7 @@ public class MoveTutorial : BaseTutorial
 
         if (CheckBoxRange(layer))
         {
-            _tutorialCanvas.DOFade(0.0f, _fadeDuration);
+            _tutorialCanvas.DOFade(0.0f, _fadeDuration).SetLink(gameObject);
             OnEndTutorial?.Invoke();
         }
     }

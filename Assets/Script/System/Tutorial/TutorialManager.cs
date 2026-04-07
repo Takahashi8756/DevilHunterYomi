@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using DG.Tweening;
 
 /// <summary>
 /// チュートリアル管理用クラス
@@ -7,16 +8,22 @@ public class TutorialManager : Updater
 {
     [Header("【取得用変数】")]
     [SerializeField] private PlayerState _playerState = default;
+    [SerializeField] private CanvasGroup _titleCanvasGroup = default;
+
+    [Header("【出現時間】")]
+    [SerializeField] private float _showTitleDuration = 0.5f;
 
     [Header("チュートリアル取得用")]
     [SerializeField] private BaseTutorial[] _baseTutorials = new BaseTutorial[1];   
 
+    //作業用変数
     private int _tutorialIndex = 0;
     private bool _isStart = false;
 
     private void Start()
     {
         _playerState.StateChange(PlayerState.PlayerStatus.Movie);
+        _titleCanvasGroup.DOFade(1.0f, _showTitleDuration);
 
         foreach (BaseTutorial tutorial in _baseTutorials)
         {

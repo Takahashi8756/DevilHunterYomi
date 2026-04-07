@@ -2,6 +2,7 @@
 using DG.Tweening;
 using UnityEngine.Playables;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 /// <summary>
 /// ゲート突入時の演出を管理
@@ -22,7 +23,6 @@ public class IntoGateManager : Updater
     [Header("【スクリプト取得】")]
     [SerializeField] private BGMManager _bgmManager = default;
     [SerializeField] private BaseGateEvent _baseGateEvent = default;
-    [SerializeField] private PlayerCheckObject _playerCheckObject = default;
     [SerializeField] private PlayerState _playerState = default;
     [SerializeField] private MainSceneManager _mainSceneManager = default;
     [SerializeField] private GateContentsManager _gateContentsManager = default;
@@ -37,14 +37,12 @@ public class IntoGateManager : Updater
 
     private void OnEnable()
     {
-        _playerCheckObject.EnterTheGate += ShowCanvas;
         _gateContentsManager.IsSubmit += Choice;
         _playerState.OnDamageEvent += EndChoice;
     }
 
     private void OnDisable()
     {
-        _playerCheckObject.EnterTheGate -= ShowCanvas;
         _gateContentsManager.IsSubmit -= Choice;
         _playerState.OnDamageEvent -= EndChoice;
     }
@@ -52,7 +50,7 @@ public class IntoGateManager : Updater
     /// <summary>
     /// UI表示用ムービーを再生
     /// </summary>
-    private void ShowCanvas()
+    public void ShowSelectCanvas()
     {
         _intoGateMovie.Play();
         _intoGateCanvas.alpha = 1.0f;
@@ -89,9 +87,12 @@ public class IntoGateManager : Updater
     /// </summary>
     public void IntoGateStart()
     {
-        _fadeImage.DOFade(1.0f, _fadeDuration);
+        //フェード開始
+        _fadeImage.DOFade(1.0f, _fadeDuration).SetLink(gameObject);
+
         _bgmManager.BGMFadeOut();
         _fadeState = FadeState.Fade;
+
         _mainSceneManager.TimerStateChange(false);
         _gateContentsManager.EndChoice();
         _playerState.StateChange(PlayerState.PlayerStatus.Movie);

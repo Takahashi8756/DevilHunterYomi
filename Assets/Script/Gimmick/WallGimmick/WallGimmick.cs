@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 /// <summary>
 /// 壁ギミック（チュートリアル用）クラス
@@ -11,6 +12,9 @@ public class WallGimmick : BaseGimmick
     [Header("【消滅エフェクト】")]
     [SerializeField] private Transform _playEffectPosition = default;
     [SerializeField] private GameObject _destroyEffect = default;
+
+    //イベント
+    public override event Action<string> OnEncountText;
 
     public override bool IsInteract => _isInteract;
 
@@ -26,7 +30,10 @@ public class WallGimmick : BaseGimmick
 
     public override void DestroyGimmick()
     {
-        Instantiate(_destroyEffect);
+        GameObject effect = Instantiate(_destroyEffect);
+        effect.transform.position = _playEffectPosition.position;
+
+        OnEncountText = null;
         Destroy(gameObject);
     }
 }

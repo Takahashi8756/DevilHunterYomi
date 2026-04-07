@@ -2386,6 +2386,7 @@ GameObject:
   - component: {fileID: 1305445782}
   - component: {fileID: 1305445779}
   - component: {fileID: 1305445781}
+  - component: {fileID: 1305445783}
   m_Layer: 0
   m_Name: DungeonManager
   m_TagString: Untagged
@@ -2421,6 +2422,7 @@ MonoBehaviour:
   _gateParent: {fileID: 830835066}
   _itemDirector: {fileID: 1721230196}
   _navMeshSurface: {fileID: 1982420696}
+  _gimmickManager: {fileID: 1305445783}
 --- !u!4 &1305445780
 Transform:
   m_ObjectHideFlags: 0
@@ -2476,6 +2478,22 @@ MonoBehaviour:
   _createDungeon: {fileID: 1305445779}
   _spawnEnemy: {fileID: 1305445781}
   _isCreateDungeon: 1
+--- !u!114 &1305445783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305445778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43aff64d0e482b4aa852766efb6e8db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _intoGateManager: {fileID: 1865240688}
+  _showTalkTextUI: {fileID: 159309067}
+  _gateManagerList: []
+  _gimmickList: []
 --- !u!114 &1315179310 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4926113943136813110, guid: e0953be713fbb804e84f10bc29d88e48, type: 3}
@@ -3729,7 +3747,6 @@ MonoBehaviour:
   _fadeImage: {fileID: 327460205}
   _bgmManager: {fileID: 114744667}
   _baseGateEvent: {fileID: 1408036006}
-  _playerCheckObject: {fileID: 1892891206}
   _playerState: {fileID: 1892891200}
   _mainSceneManager: {fileID: 608017709}
   _gateContentsManager: {fileID: 1865240689}
@@ -3811,17 +3828,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c00da45da6057d54486772c77287fc8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1892891206 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7872040725987256700, guid: eea64d96b9e9ca343957654533b050fc, type: 3}
-  m_PrefabInstance: {fileID: 491239744}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67fb48c3495a89c4495db97812f59dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1972391142 stripped

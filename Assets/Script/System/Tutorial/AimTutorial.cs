@@ -24,7 +24,7 @@ public class AimTutorial : BaseTutorial
 
     public override void StartTutorial()
     {
-        _tutorialCanvas.DOFade(1.0f, _fadeDuration);
+        _tutorialCanvas.DOFade(1.0f, _fadeDuration).SetLink(gameObject);
     }
 
     public override void UpdateTutorial()
@@ -33,7 +33,7 @@ public class AimTutorial : BaseTutorial
 
         if (CheckBoxRange(layer))
         {
-            _tutorialCanvas.DOFade(0.0f, _fadeDuration);
+            _tutorialCanvas.DOFade(0.0f, _fadeDuration).SetLink(gameObject);
             OnEndTutorial?.Invoke();
         }
     }

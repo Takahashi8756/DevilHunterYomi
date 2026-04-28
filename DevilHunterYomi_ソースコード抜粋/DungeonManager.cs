@@ -13,6 +13,9 @@ public class DungeonManager : Updater
     [SerializeField] private CreateDungeon _createDungeon = default;
     [SerializeField] private SpawnEnemy _spawnEnemy = default;
 
+    [Header("ダンジョン生成をするか")]
+    [SerializeField] private bool _isCreateDungeon = true;
+
     //========================================================================
     //メソッド
     //========================================================================
@@ -22,6 +25,11 @@ public class DungeonManager : Updater
     /// </summary>
     private void Start()
     {
+        if (!_isCreateDungeon)
+        {
+            return;
+        }
+
         int[,] mapData = _createDungeon.Create();
         float distance = _createDungeon.SetBlockDistance;
         Vector3 setBlockPosition = _createDungeon.CreateTransform.position;
@@ -34,6 +42,11 @@ public class DungeonManager : Updater
     /// </summary>
     public override void FixedUpdateMethod()
     {
+        if (!_isCreateDungeon)
+        {
+            return;
+        }
+
         _spawnEnemy.SpawnUpdater();
     }
 }

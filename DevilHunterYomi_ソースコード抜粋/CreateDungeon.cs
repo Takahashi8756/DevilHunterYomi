@@ -31,6 +31,7 @@ public class CreateDungeon : MonoBehaviour
     [SerializeField] private Transform _gateParent = default;
     [SerializeField] private ItemDirector _itemDirector = default;
     [SerializeField] private NavMeshSurface _navMeshSurface = default;
+    [SerializeField] private GimmickManager _gimmickManager = default;
 
     //マップデータ格納用配列
     private int[,] _mapData = new int[0, 0];
@@ -40,7 +41,6 @@ public class CreateDungeon : MonoBehaviour
     private const int WALL_INDEX = 1;
     private const int TRESURE_INDEX = 2;
     private const int GATE_INDEX = 3;
-    private const int HOLE_INDEX = 4;
     private const int MAX_RANDOM_RANGE = 5;
     private const int SET_TRESURE_INDEX = 3;
 
@@ -292,11 +292,13 @@ public class CreateDungeon : MonoBehaviour
                     Vector3 tresurePosition = blockPosition + Vector3.up * _setBlockDistance;
                     GameObject tresure = Instantiate(_treasureBoxPrefab, tresurePosition, Quaternion.identity, _tresureParent);
                     tresure.GetComponentInChildren<TresureDropItem>().ToStart(_itemDirector);
+                    _gimmickManager.SetGimmick(tresure.GetComponentInChildren<BaseGimmick>());
                 }
                 else if (mapData[x,y] == GATE_INDEX)
                 {
                     Vector3 gatePosition = blockPosition + Vector3.up * _setBlockDistance;
-                    Instantiate(_gatePrefab, gatePosition, Quaternion.identity, _gateParent);
+                    GameObject gate = Instantiate(_gatePrefab, gatePosition, Quaternion.identity, _gateParent);
+                    _gimmickManager.SetGate(gate.GetComponentInChildren<GateGimmick>());
                 }
             }
         }
